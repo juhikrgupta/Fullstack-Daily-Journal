@@ -1,0 +1,41 @@
+<%- include("partials/header") %>
+
+<div class="container">
+  <header class="main-header">
+  <h1 class="title">My Daily Journal</h1>
+  <div class="header-actions">
+    <a href="/compose" class="compose-btn">+ New Post</a>
+
+    <% if (user) { %>
+      <form action="/logout" method="POST" style="display: inline;">
+        <button type="submit" class="logout-btn">Logout</button>
+      </form>
+    <% } else { %>
+      <a href="/login" class="login-btn">Login</a>
+    <% } %>
+  </div>
+</header>
+
+
+  <div class="posts-wrapper">
+    <% posts.forEach(function(post){ %>
+      <div class="post-card">
+        <h2><%= post.title %></h2>
+        
+        <p><%= post.content.length > 100 ? post.content.substring(0, 100) + "..." : post.content %></p>
+
+        <div class="card-actions">
+          <a href="/posts/<%= post._id %>" class="read-more">Read More</a>
+          <a href="/edit/<%= post._id %>" class="edit-btn">Edit</a>
+          <form action="/delete/<%= post._id %>" method="POST" class="delete-form">
+            <button type="submit" class="delete-btn">Delete</button>
+          </form>
+        </div>
+      </div>
+    <% }); %>
+  </div>
+</div>
+
+
+
+<%- include("partials/footer") %>

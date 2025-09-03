@@ -1,0 +1,31 @@
+<%- include("partials/header") %>
+
+<h1><%= title %></h1>
+<p><%= content %></p>
+
+
+import mongoose from "mongoose";
+
+const postSchema = new mongoose.Schema({
+  title: String,
+  content: String,
+  date: {
+    type: String,
+    default: function () {
+      const now = new Date();
+      return now.toLocaleString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      });
+    }
+  }
+});
+
+export default mongoose.model("Post", postSchema);
+
+
+<%- include("partials/footer") %>

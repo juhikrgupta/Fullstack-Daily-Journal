@@ -1,0 +1,18 @@
+  <footer>
+    <p>© 2025 Daily Journal</p>
+  </footer>
+
+  <button id="mode-toggle">🌙 Dark Mode</button>
+
+<script>
+  const toggleBtn = document.getElementById("mode-toggle");
+  const body = document.body;
+
+  toggleBtn.addEventListener("click", () => {
+    body.classList.toggle("dark-mode");
+    toggleBtn.textContent = body.classList.contains("dark-mode") ? "☀️ Light Mode" : "🌙 Dark Mode";
+  });
+</script>
+
+</body>
+</html>
